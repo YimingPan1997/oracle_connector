@@ -3,7 +3,7 @@
 ```
 unzip oracle_connector.zip
 ```
-2. modify Jason file
+2. modify Jason file```
 change username,password,querySql and jdbcUrl
 
 after we finish the loading job we need to replace writer use following script
