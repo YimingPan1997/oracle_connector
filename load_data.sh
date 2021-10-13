@@ -46,7 +46,7 @@ gsql -g RJF "run loading job load_job_advisor using
 advisordata=\"/home/tigergraph/data/advisor.csv\""
 
 gsql -g RJF "run loading job load_job_advisor_account using 
-advisoraccountdata=\"/home/tigergraph/data/advisor_account.csv\""
+advisoraccountdata=\"/home/tigergraph/data/advisoraccount.csv\""
 
 gsql -g RJF "run loading job load_job_security using 
 securitydata=\"/home/tigergraph/data/security.csv\""
