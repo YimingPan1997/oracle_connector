@@ -1,0 +1,59 @@
+CREATE VERTEX Address(PRIMARY_ID id STRING, Purpose STRING, Address_record_number INT, City STRING, Country STRING, Postal_code STRING, Region STRING, State STRING, Street_line1 STRING, Street_line2 STRING, Street_line3 STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Customer(PRIMARY_ID Customer_id STRING, Add_date DATETIME, status STRING, Date_of_Birth DATETIME, AUM FLOAT, PIC_or_PIV STRING, BO_or_PC STRING, Date_of_incorporated DATETIME, Industry STRING, Type STRING, Date_of_death DATETIME, Financial_profile_last_Update_date DATETIME, First_name STRING, Middle_name STRING, Last_name STRING, Occupation STRING, Origanization_legal_structure STRING, Organization_name STRING, SAR STRING, Public_or_private STRING, Wealth_source STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX phone(PRIMARY_ID phone_number INT) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX Back_Office_Transaction(PRIMARY_ID Transaction_Reference_Identifier STRING, Credit_debit_code STRING, Execution_date DATETIME, Unrelated_party STRING, Unit_quantity FLOAT, Amount FLOAT, Product_type STRING, Type_description STRING, Subtype_description STRING, Trailer_description STRING, Alternative_trailer_description STRING, Trxn_type1 STRING, Trxn_typw2 STRING, cancel_ind STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX Security(PRIMARY_ID id STRING, Expiration_date DATETIME, Put_call_code STRING, Product_category STRING, Short_name STRING, Base_identifier INT) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Household_group(PRIMARY_ID id STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Product(PRIMARY_ID id STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Employee(PRIMARY_ID id INT, Type STRING, First_name STRING, Last_name STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Front_office_transaction(PRIMARY_ID Transaction_Reference_Identifier STRING, Execution_date DATETIME, Type_description STRING, Subtype_desciprtion STRING, Trailer_description STRING, Alternative_trailer_description STRING, Instrument_number INT, Instrument_Name STRING, Transaction_amount FLOAT, Issuing_date DATETIME, Posting_date DATETIME, Type STRING, Subtype STRING, ORIG_TO_BENEF STRING, Tran_type STRING, MI_BEN_NM STRING, MI_REM_NM STRING, CASH_NM STRING, WIRE_BEN_NM STRING, WIRE_ORIG_NM STRING, MI_UN_BEN_FL STRING, MI_UN_REM_FL STRING, WIRE_UN_BEN_FL STRING, WIRE_UN_ORIG_FL STRING, WIRE_BEN_ADDR_P STRING, WIRE_ORIG_ADDR_P STRING, WIRE_INTRL_BEN_FL STRING, WIRE_INTRL_ORIG_FL STRING, MI_INTRL_BEN_FL STRING, MI_INTRL_REM_FL STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX Investment_advisor(PRIMARY_ID id STRING, Name STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Organization(PRIMARY_ID id STRING, Code STRING, Name STRING, Date DATETIME) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Security_market_daily(PRIMARY_ID id STRING, Closing_price STRING, Date DATETIME, Option_price STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Cases(PRIMARY_ID id STRING, CreateDate DATETIME, Summary STRING, Case_Desc_Tx INT) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX External_address(PRIMARY_ID id STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE"
+CREATE VERTEX Account(PRIMARY_ID Identifier STRING, Open_date DATETIME, Account_status STRING, DVP_or_RVP STRING, Last_activity DATETIME, Account_open_method STRING, Source_fund STRING, Fund_description STRING, Balance FLOAT) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX Front_office_transaction_party(PRIMARY_ID id STRING, Name STRING, Unknown_party_name_flag STRING, Address_purpose STRING, internal_account STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX Country(PRIMARY_ID Country_code STRING, Country_name STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX kdd_review(PRIMARY_ID id INT, Create_date DATETIME, Alert_ct INT) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="false"
+CREATE VERTEX Party(PRIMARY_ID id STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE VERTEX Trade_execution(PRIMARY_ID id STRING, Open_or_Closed STRING, Firm STRING, Settlement_Date DATETIME, Price FLOAT, Principal_amount FLOAT, Unity_quantity FLOAT, Trade_execution_date DATETIME, Purpose STRING) WITH STATS="OUTDEGREE_BY_EDGETYPE", PRIMARY_ID_AS_ATTRIBUTE="true"
+CREATE DIRECTED EDGE Cancel_pair_transaction(FROM Back_Office_Transaction, TO Back_Office_Transaction) WITH REVERSE_EDGE="reverse_Cancel_pair_transaction"
+CREATE UNDIRECTED EDGE Transaction_Security(FROM Back_Office_Transaction, TO Security)
+CREATE UNDIRECTED EDGE Customer_has_Address(FROM Customer, TO Address)
+CREATE UNDIRECTED EDGE Security_Daily(FROM Security, TO Security_market_daily)
+CREATE UNDIRECTED EDGE Customer_Organization(FROM Organization, TO Customer)
+CREATE UNDIRECTED EDGE Account_has_Address(FROM Account, TO Address)
+CREATE UNDIRECTED EDGE Account_to_Customer(FROM Account, TO Customer, Role STRING)
+CREATE UNDIRECTED EDGE Account_to_Phone(FROM Account, TO phone)
+CREATE UNDIRECTED EDGE Offset_Account(FROM Back_Office_Transaction, TO Account, Offset_Account_Rule STRING)
+CREATE UNDIRECTED EDGE Primary_customer(FROM Account, TO Customer)
+CREATE UNDIRECTED EDGE account_to_household(FROM Account, TO Household_group)
+CREATE UNDIRECTED EDGE Account_to_Product(FROM Account, TO Product)
+CREATE UNDIRECTED EDGE Employee_to_Account(FROM Employee, TO Account, Role STRING)
+CREATE UNDIRECTED EDGE Account_to_BOT(FROM Account, TO Back_Office_Transaction)
+CREATE UNDIRECTED EDGE Account_to_FOT_1(FROM Account, TO Front_office_transaction)
+CREATE UNDIRECTED EDGE Transaction_to_part(FROM Front_office_transaction, TO Front_office_transaction_party)
+CREATE UNDIRECTED EDGE Investment_Account(FROM Investment_advisor, TO Account)
+CREATE UNDIRECTED EDGE FOT_party_Address(FROM Front_office_transaction_party, TO External_address)
+CREATE UNDIRECTED EDGE Account_to_FOT_2(FROM Account, TO Front_office_transaction)
+CREATE UNDIRECTED EDGE Master_account(FROM Investment_advisor, TO Account)
+CREATE UNDIRECTED EDGE Country_of_residence(FROM Customer, TO Country)
+CREATE UNDIRECTED EDGE Country_of_taxation(FROM Customer, TO Country)
+CREATE UNDIRECTED EDGE Customer_associated_with_country(FROM Customer, TO Country, Relationship_Type STRING)
+CREATE UNDIRECTED EDGE Primary_citizenhsip(FROM Customer, TO Country)
+CREATE UNDIRECTED EDGE Secondary_citizenship(FROM Customer, TO Country)
+CREATE UNDIRECTED EDGE Country_of_headquarters(FROM Customer, TO Country)
+CREATE UNDIRECTED EDGE Country_of_operation(FROM Customer, TO Country)
+CREATE UNDIRECTED EDGE Security_Country(FROM Security, TO Country)
+CREATE UNDIRECTED EDGE Alternate_account(FROM Account, TO Account)
+CREATE UNDIRECTED EDGE Break_BOT(FROM kdd_review, TO Back_Office_Transaction)
+CREATE UNDIRECTED EDGE Break_FOT(FROM kdd_review, TO Front_office_transaction)
+CREATE UNDIRECTED EDGE Cases_Review(FROM Cases, TO kdd_review)
+CREATE UNDIRECTED EDGE Trade_Security(FROM Trade_execution, TO Security)
+CREATE UNDIRECTED EDGE Trade_Product(FROM Trade_execution, TO Product)
+CREATE UNDIRECTED EDGE Buyer_account(FROM Account, TO Trade_execution)
+CREATE UNDIRECTED EDGE Seller_acount(FROM Account, TO Trade_execution)
+CREATE UNDIRECTED EDGE Break_Trade(FROM kdd_review, TO Trade_execution)
+CREATE UNDIRECTED EDGE buyer(FROM Trade_execution, TO Party, code STRING)
+CREATE UNDIRECTED EDGE seller(FROM Trade_execution, TO Party, code STRING)
