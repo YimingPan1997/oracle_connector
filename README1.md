@@ -9,7 +9,9 @@ If we don't have enough disk, we have to download the table and load the data on
 5. delete csv file in /home/tigergraph/data
 
 Forexample
+
 open download_table.sh, copy and run this line ```python3 datax.py /home/tigergraph/oracle_connector/account.json```
+
 open load_data.sh, copy and run this line ```gsql -g RJF "run loading job load_job_account using 
                                           accountdata=\"/home/tigergraph/data/account.csv\""```
    
