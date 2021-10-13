@@ -1,0 +1,54 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select ACCT_INTRL_ID,ACCT_OPEN_DT,ACCT_STAT_CD,DVP_RVP_FL,LAST_ACTVY_DT,MTHD_ACCT_OPNG,CSTM_1_TX,CSTM_3_TX,ACCT_TYPE1_CD,ALT_ACCT_ID,HH_ACCT_GRP_ID,PRMRY_CUST_INTRL_ID from ofsaafccm.acct"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "tigergraphwriter",
+          "parameter": {
+            "username": "tigergraph",
+            "password": "tigergraph",
+            "jdbcUrl": "jdbc:tg:https://192.168.100.21:14240",
+            "writeMode": "insert",
+            "graph": "RJF",
+            "table": [
+              "job load_job_account"
+            ],
+            "sep": ",",
+            "filename": "accountdata",
+            "eol": "\n",
+            "debug": "2",
+            "trustStore": "D:\\tiger\\benchmark\\ssl\\server.jks",
+            "trustStorePassword": "123456",
+            "trustStoreType": "JKS"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select CUST_INTRL_ID,CUST_CNTRY,RLSHP_TYPE_CD from ofsaafccm.CUST_CNTRY"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "customercountry",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "customercountry.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

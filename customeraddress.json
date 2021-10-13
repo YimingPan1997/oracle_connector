@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select CUST_ADDR_SEQ_ID,ADDR_USAGE_CD,ADDR_SEQ_NB,ADDR_CITY_NM,ADDR_CNTRY_CD,ADDR_POSTL_CD,ADDR_RGN_NM,ADDR_STATE_CD,ADDR_STRT_LINE1_TX,ADDR_STRT_LINE2_TX,ADDR_STRT_LINE3_TX,CUST_INTRL_ID from ofsaafccm.CUST_ADDR"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "address",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "customeraddress.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

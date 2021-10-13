@@ -1,0 +1,139 @@
+USE GRAPH RJF
+CREATE LOADING JOB load_job_account FOR GRAPH RJF {
+      DEFINE FILENAME accountdata;
+      LOAD accountdata TO VERTEX Account VALUES($0, $1, $2, $3, $4, $5, $6, $7,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD accountdata TO EDGE Account_to_Product VALUES($0, $8) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD accountdata TO EDGE Alternate_account VALUES($0, $9) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD accountdata TO EDGE account_to_household VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD accountdata TO EDGE Primary_customer VALUES($0, $11) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_account_address FOR GRAPH RJF {
+      DEFINE FILENAME accountaddressdata;
+      LOAD accountaddressdata TO VERTEX Address VALUES($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
+       LOAD accountaddressdata TO EDGE Account_has_Address VALUES($11,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_customer_address FOR GRAPH RJF {
+      DEFINE FILENAME customeraddressdata;
+      LOAD customeraddressdata TO VERTEX Address VALUES($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD customeraddressdata TO EDGE Customer_has_Address VALUES($11,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_account_balance FOR GRAPH RJF {
+      DEFINE FILENAME accountbalancedata;
+      LOAD accountbalancedata TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_account_customer FOR GRAPH RJF {
+      DEFINE FILENAME accountcustomer;
+      LOAD accountcustomer TO EDGE Account_to_Customer VALUES($0,$1,$2) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_bot FOR GRAPH RJF {
+      DEFINE FILENAME bot;
+      LOAD bot TO VERTEX Back_Office_Transaction VALUES($0,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD bot TO EDGE Account_to_BOT VALUES($14, $0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD bot TO EDGE Cancel_pair_transaction VALUES($0, $15) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD bot TO EDGE Offset_Account VALUES($0, $16,$17) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD bot TO EDGE Transaction_Security VALUES($0, $18) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_country FOR GRAPH RJF {
+      DEFINE FILENAME countrydata;
+      LOAD countrydata TO VERTEX Country VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_customer FOR GRAPH RJF {
+      DEFINE FILENAME customerdata;
+      LOAD customerdata TO VERTEX Customer VALUES($0,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16,$17,$18,$19,$20) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD customerdata TO EDGE Primary_citizenhsip VALUES($0, $21) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD customerdata TO EDGE Secondary_citizenship VALUES($0, $22) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD customerdata TO EDGE Country_of_headquarters VALUES($0, $23) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD customerdata TO EDGE Country_of_residence VALUES($0, $24) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD customerdata TO EDGE Country_of_taxation VALUES($0, $25) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD customerdata TO EDGE Country_of_operation VALUES($0, $26) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_customer_country FOR GRAPH RJF {
+      DEFINE FILENAME customercountrydata;
+      LOAD customercountrydata TO EDGE Customer_associated_with_country VALUES($0,$1,$2) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_employee FOR GRAPH RJF {
+      DEFINE FILENAME employeedata;
+      LOAD employeedata TO VERTEX Employee VALUES($0,$1,$2,$3) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_employee_account FOR GRAPH RJF {
+      DEFINE FILENAME employeeaccountdata;
+      LOAD employeeaccountdata TO EDGE Employee_to_Account VALUES($0,$1,$2) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+
+CREATE LOADING JOB load_job_wire FOR GRAPH RJF {
+      DEFINE FILENAME wiredata;
+      LOAD wiredata TO VERTEX Front_office_transaction VALUES($0,$1,$2,$3,$4,$5,_,_,$6,_,_,$7,$8,$9,"WIRE",_,_,_,$12,$13,_,_,$14,$15,$16,$17,$18,$19,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD wiredata TO EDGE Account_to_FOT_1 VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD wiredata TO EDGE Account_to_FOT_2 VALUES($0, $11) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_cash FOR GRAPH RJF {
+      DEFINE FILENAME cashdata;
+      LOAD cashdata TO VERTEX Front_office_transaction VALUES($0,$1,$2,$3,$4,$5,_,_,$6,_,_,$7,$8,_,"CASH",_,_,$11,_,_,_,_,_,_,_,_,_,_,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD cashdata TO EDGE Account_to_FOT_1 VALUES($0, $9) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD cashdata TO EDGE Account_to_FOT_2 VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_mi FOR GRAPH RJF {
+      DEFINE FILENAME midata;
+      LOAD midata TO VERTEX Front_office_transaction VALUES($0,_,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,_,"CASH",$14,$15,_,_,_,$16,$17,_,_,_,_,_,_,$18,$19) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD midata TO EDGE Account_to_FOT_1 VALUES($0, $12) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD midata TO EDGE Account_to_FOT_2 VALUES($0, $13) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_advisor FOR GRAPH RJF {
+      DEFINE FILENAME advisordata;
+      LOAD advisordata TO VERTEX Investment_advisor VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_advisor_account FOR GRAPH RJF {
+      DEFINE FILENAME advisoraccountdata;
+      LOAD advisoraccountdata TO EDGE Investment_Account VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD advisoraccountdata TO EDGE Master_account VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+
+CREATE LOADING JOB load_job_security FOR GRAPH RJF {
+      DEFINE FILENAME securitydata;
+      LOAD securitydata TO VERTEX Security VALUES($0,$1,$2,$3,$4,$5) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_security_daily FOR GRAPH RJF {
+      DEFINE FILENAME securitydailydata;
+      LOAD securitydailydata TO VERTEX Security_market_daily VALUES($0,$1,$2,$3) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD securitydailydata TO EDGE Security_Daily VALUES($4,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+CREATE LOADING JOB load_job_trade FOR GRAPH RJF {
+      DEFINE FILENAME tradedata;
+      LOAD tradedata TO VERTEX Trade_execution VALUES($0,$1,$2,$3,$4,$5,$6,$7,$8) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD tradedata TO EDGE Buyer_account VALUES($9,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD tradedata TO EDGE Seller_acount VALUES($10,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD tradedata TO EDGE Trade_Product VALUES($0,$11) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD tradedata TO EDGE Trade_Security VALUES($0,$12) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD tradedata TO EDGE buyer VALUES($0,$13,$14) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD tradedata TO EDGE seller VALUES($0,$15,$16) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
+
+
+
+
+
+
+
+
+
+
+
+

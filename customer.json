@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select CUST_INTRL_ID,CUST_ADD_DT,CUST_STAT_CD,BIRTH_DT,CSTM_1_RL,CSTM_1_TX,CSTM_2_TX,CUST_INC_DT,CUST_INDUS_CD,CUST_TYPE_CD,d_date_of_death,FNCL_PRFL_LAST_UPDT_DT,FIRST_NM,MIDL_NM,LAST_NM,OCPTN_NM,ORG_LGL_STRUC_CD,ORG_NM,PRIOR_SAR_FL,PUBLC_PRIVT_CD,WLTH_SRC_DSCR_TX,CTZSHP_CNTRY1_CD,CTZSHP_CNTRY2_CD,HDQ_CTRY,RES_CNTRY_CD,TAXTN_CNTRY_CD,OPR_CTRY from ofsaafccm.CUST"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "customer",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "customer.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

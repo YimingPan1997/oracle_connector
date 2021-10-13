@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select EMP_INTRL_ID,ACCT_INTRL_ID,EMP_ACCT_ROLE_CD from ofsaafccm.EMP_ACCT"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "employeeaccount",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "employeeaccount.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select TRXN_INTRL_REF_ID,TRXN_EXCTN_DT,CSTM_2_TX,CSTM_3_TX,CSTM_4_TX,CSTM_5_TX,TRXN_BASE_AM,TRXN_TYPE1_CD,TRXN_TYPE2_CD,ACCT_INTRL_ID,CNDTR_ACCT_ID,CNDTR_AUG_NM, from ofsaafccm.BACK_OFFICE_TRXN"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "cash",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "cash.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

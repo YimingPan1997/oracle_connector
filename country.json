@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select GEO_CNTRY_CD,GEO_NM from ofsaafccm.CLNDR_NM"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "country",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "country.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

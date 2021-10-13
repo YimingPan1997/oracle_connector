@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select TRADE_INTRL_ID,CUST_OPEN_CLOS_POSN_CD,FIRM_MC_INTRL_ID,LAST_STLMT_DT,LAST_TRADE_BASE_PR,LAST_TRADE_PRNPL_BASE_AM,LAST_TRADE_UNIT_QT,TRADE_DT,TRADE_PURP_CD,LAST_TRADE_BUYER_ACCT_INTRL_ID,LAST_TRADE_SELLR_ACCT_INTRL_ID,PRDCT_CTGRY_CD,SCRTY_INTRL_ID,TRADE_BUYER_ID,TRADE_BUYER_TYPE_CD,TRADE_SELLR_ID,TRADE_SELLR_TYPE_CD from ofsaafccm.TRADE"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "trade",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "trade.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

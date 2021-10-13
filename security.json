@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select SCRTY_INTRL_ID,DRVTV_MTRTY_XPRTN_DT,OPTNS_CALL_PUT_CD,PROD_CTGRY_CD,SCRTY_SHRT_NM,BASE_SCRTY_INTRL_ID from ofsaafccm.SCRTY"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "security",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "security.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

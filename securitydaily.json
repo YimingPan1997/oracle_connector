@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select SCRTY_MKT_DAILY_INTRL_ID,MKT_CLS_BASE_PR,MKT_DT,OPTNS_STRK_BASE_PR,SCRTY_INTRL_ID from ofsaafccm.SCRTY_MKT_DAILY"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "security",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "security.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

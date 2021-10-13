@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select TRXN_INTRL_REF_ID,CSTM_2_TX,CSTM_3_TX,CSTM_4_TX,CSTM_5_TX,INSTR_NB,INSTR_NM,TRXN_BASE_AM,TRXN_ISSUE_DT,TRXN_POST_DT,TRXN_TYPE1_CD,TRXN_TYPE2_CD,REM_ACCT_ID,BENEF_ACCT_ID,BENEF_AUG_NM,REM_AUG_NM,UNKWN_BENEF_FL,UNKWN_REM_FL,INTRL_BENEF_ACCT_FL,INTRL_REM_ACCT_FL from ofsaafccm.BACK_OFFICE_TRXN"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "mi",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "mi.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}

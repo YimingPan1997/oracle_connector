@@ -1,0 +1,42 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 5
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "oraclereader",
+          "parameter": {
+            "username": "test",
+            "password": "test",
+            "connection": [
+              {
+                "querySql": [
+                  "select ACCT_INTRL_ID,CUST_INTRL_ID,CUST_ACCT_ROLE_CD from ofsaafccm.CUST_ACCT"
+                ],
+                "jdbcUrl": [
+                  "jdbc:oracle:thin:@localhost:1521:lhrcdb1"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "accountcustomer",
+          "parameter": {
+            "path": "/home/tigergraph/data",
+            "fileName": "accountcustomer.csv",
+            "writeMode": "append"
+          }
+        }
+      }
+    ]
+  }
+}
