@@ -8,8 +8,8 @@
 
 ## If we don't have enough disk, we have to download the table and load the data one by one 
 
-3. cd into oracle_connector/bin, we have 19 comments in ```download_table.sh```, copy the ith comment and run that
-4. cd back to the first oracle_connector folder, we have 19 comments in ```load_data.sh```, copy the ith comment and run that
+3. cd into oracle_connector/bin, we have 19 commands in ```download_table.sh```, copy the ith commands and run that
+4. cd back to the first oracle_connector folder, we have 19 commands in ```load_data.sh```, copy the ith commands and run that
 5. delete csv file in /home/tigergraph/data
 
 Forexample
