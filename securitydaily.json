@@ -29,10 +29,10 @@
           }
         },
         "writer": {
-          "name": "security",
+          "name": "securitydaily",
           "parameter": {
             "path": "/home/tigergraph/data",
-            "fileName": "security.csv",
+            "fileName": "securitydaily.csv",
             "writeMode": "append"
           }
         }
