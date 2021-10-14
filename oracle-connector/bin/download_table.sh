@@ -36,3 +36,5 @@ python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/securitydaily.
 echo "----------download finish-----------"
 python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/trade.json
 echo "----------download finish-----------"
+
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/trade.json
