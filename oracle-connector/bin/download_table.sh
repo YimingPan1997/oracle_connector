@@ -37,4 +37,10 @@ echo "----------download finish-----------"
 python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/trade.json
 echo "----------download finish-----------"
 
-python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/trade.json
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/KDDreview.json
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/KDDcases.json
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/KDDbo.json
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/KDDcash.json
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/KDDmi.json
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/KDDtrade.json
+python3 datax.py /home/tigergraph/jdbc_connector/jdbc_query_files/KDDwire.json
