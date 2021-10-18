@@ -1,7 +1,7 @@
 USE GRAPH RJF
 CREATE LOADING JOB load_job_account FOR GRAPH RJF {
       DEFINE FILENAME accountdata;
-      LOAD accountdata TO VERTEX Account VALUES($0, $1, $2, $3, $4, $5, $6, $7,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD accountdata TO VERTEX Account VALUES($0, $1, $2, $3, $4, $5, $6, $7,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD accountdata TO EDGE Account_to_Product VALUES($0, $8) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD accountdata TO EDGE Alternate_account VALUES($0, $9) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD accountdata TO EDGE account_to_household VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
@@ -22,7 +22,7 @@ CREATE LOADING JOB load_job_customer_address FOR GRAPH RJF {
 
 CREATE LOADING JOB load_job_account_balance FOR GRAPH RJF {
       DEFINE FILENAME accountbalancedata;
-      LOAD accountbalancedata TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD accountbalancedata TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,$1,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
 
 CREATE LOADING JOB load_job_account_customer FOR GRAPH RJF {
@@ -41,7 +41,7 @@ CREATE LOADING JOB load_job_bot FOR GRAPH RJF {
 
 CREATE LOADING JOB load_job_country FOR GRAPH RJF {
       DEFINE FILENAME countrydata;
-      LOAD countrydata TO VERTEX Country VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD countrydata TO VERTEX Country VALUES($0,$1,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
 
 CREATE LOADING JOB load_job_customer FOR GRAPH RJF {
@@ -122,8 +122,6 @@ CREATE LOADING JOB load_job_trade FOR GRAPH RJF {
       LOAD tradedata TO EDGE Seller_acount VALUES($10,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD tradedata TO EDGE Trade_Product VALUES($0,$11) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD tradedata TO EDGE Trade_Security VALUES($0,$12) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD tradedata TO EDGE buyer VALUES($0,$13,$14) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD tradedata TO EDGE seller VALUES($0,$15,$16) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
 
 
