@@ -57,11 +57,11 @@ securitydailydata=\"/app/tigergraph/securitydaily.csv\""
 gsql -g RJF "run loading job load_job_trade using 
 tradedata=\"/app/tigergraph/trade.csv\""
 
-gsql -g RJF "run loading job load_job_wire2 using 
+gsql -g RJF "run loading job load_job_wire3 using 
 wiredata=\"/app/tigergraph/wire.csv\""
 
-gsql -g RJF "run loading job load_job_cash2 using 
+gsql -g RJF "run loading job load_job_cash3 using 
 cashdata=\"/app/tigergraph/cash.csv\""
 
-gsql -g RJF "run loading job load_job_mi2 using 
+gsql -g RJF "run loading job load_job_mi3 using 
 midata=\"/app/tigergraph/mi.csv\""
