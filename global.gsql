@@ -56,3 +56,4 @@ CREATE UNDIRECTED EDGE Seller_acount(FROM Account, TO Trade_execution)
 CREATE UNDIRECTED EDGE Break_Trade(FROM kdd_review, TO Trade_execution)
 CREATE UNDIRECTED EDGE Address_Country(FROM Address, TO Country)
 CREATE UNDIRECTED EDGE External_address_country(FROM External_address, TO Country)
+
