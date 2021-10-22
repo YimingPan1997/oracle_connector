@@ -70,28 +70,6 @@ CREATE LOADING JOB load_job_employee_account FOR GRAPH RJF {
       LOAD employeeaccountdata TO EDGE Employee_to_Account VALUES($0,$1,$2) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
 
-
-CREATE LOADING JOB load_job_wire FOR GRAPH RJF {
-      DEFINE FILENAME wiredata;
-      LOAD wiredata TO VERTEX Front_office_transaction VALUES($0,$1,$2,$3,$4,$5,_,_,$6,_,_,$7,$8,$9,"WIRE",_,_,_,$12,$13,_,_,$14,$15,$16,$17,$18,$19,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD wiredata TO EDGE Account_to_FOT_1 VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD wiredata TO EDGE Account_to_FOT_2 VALUES($0, $11) USING SEPARATOR=",", HEADER="false", EOL="\n";
-    }
-
-CREATE LOADING JOB load_job_cash FOR GRAPH RJF {
-      DEFINE FILENAME cashdata;
-      LOAD cashdata TO VERTEX Front_office_transaction VALUES($0,$1,$2,$3,$4,$5,_,_,$6,_,_,$7,$8,_,"CASH",_,_,$11,_,_,_,_,_,_,_,_,_,_,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD cashdata TO EDGE Account_to_FOT_1 VALUES($0, $9) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD cashdata TO EDGE Account_to_FOT_2 VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
-    }
-
-CREATE LOADING JOB load_job_mi FOR GRAPH RJF {
-      DEFINE FILENAME midata;
-      LOAD midata TO VERTEX Front_office_transaction VALUES($0,_,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,_,"CASH",$14,$15,_,_,_,$16,$17,_,_,_,_,_,_,$18,$19) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD midata TO EDGE Account_to_FOT_1 VALUES($0, $12) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD midata TO EDGE Account_to_FOT_2 VALUES($0, $13) USING SEPARATOR=",", HEADER="false", EOL="\n";
-    }
-
 CREATE LOADING JOB load_job_advisor FOR GRAPH RJF {
       DEFINE FILENAME advisordata;
       LOAD advisordata TO VERTEX Investment_advisor VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
@@ -129,21 +107,21 @@ CREATE LOADING JOB load_job_trade FOR GRAPH RJF {
 
 
 
-CREATE LOADING JOB load_job_wire3 FOR GRAPH RJF {
+CREATE LOADING JOB load_job_wire FOR GRAPH RJF {
       DEFINE FILENAME wiredata;
       LOAD wiredata TO VERTEX Front_office_transaction VALUES(gsql_concat("WIRE",$0),$1,$2,$3,$4,$5,_,_,$6,_,_,$7,$8,$9,"WIRE",_,_,_,$12,$13,_,_,$14,$15,$16,$17,$18,$19,_,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD wiredata TO EDGE Account_to_FOT_1 VALUES($10,gsql_concat("WIRE",$0)) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD wiredata TO EDGE Account_to_FOT_2 VALUES($11,gsql_concat("WIRE",$0)) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
 
-CREATE LOADING JOB load_job_cash3 FOR GRAPH RJF {
+CREATE LOADING JOB load_job_cash FOR GRAPH RJF {
       DEFINE FILENAME cashdata;
       LOAD cashdata TO VERTEX Front_office_transaction VALUES(gsql_concat("CASH",$0),$1,$2,$3,$4,$5,_,_,$6,_,_,$7,$8,_,"CASH",_,_,$11,_,_,_,_,_,_,_,_,_,_,_,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD cashdata TO EDGE Account_to_FOT_1 VALUES($9,gsql_concat("CASH",$0)) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD cashdata TO EDGE Account_to_FOT_2 VALUES($10,gsql_concat("CASH",$0)) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
 
-CREATE LOADING JOB load_job_mi3 FOR GRAPH RJF {
+CREATE LOADING JOB load_job_mi FOR GRAPH RJF {
       DEFINE FILENAME midata;
       LOAD midata TO VERTEX Front_office_transaction VALUES(gsql_concat("MI",$0),_,$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,_,"CASH",$14,$15,_,_,_,$16,$17,_,_,_,_,_,_,$18,$19,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD midata TO EDGE Account_to_FOT_1 VALUES($12,gsql_concat("MI",$0)) USING SEPARATOR=",", HEADER="false", EOL="\n";
