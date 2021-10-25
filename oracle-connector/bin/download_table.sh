@@ -44,3 +44,6 @@ python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDcash.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDmi.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDtrade.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDwire.json
+
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDreviewPART.json
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDTObo.json
