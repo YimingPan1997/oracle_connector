@@ -137,4 +137,14 @@ CREATE LOADING JOB load_job_kdd_to_bo FOR GRAPH RJF {
       DEFINE FILENAME kddtobodata;
       LOAD kddtobodata TO EDGE Break_BOT VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
-
+    
+CREATE LOADING JOB load_job_purpose FOR GRAPH RJF {
+      DEFINE FILENAME bopurpose;
+      DEFINE FILENAME mipurpose;
+      DEFINE FILENAME wirepurpose;
+      DEFINE FILENAME cashpurpose;
+      LOAD bopurpose TO VERTEX Back_Office_Transaction VALUES($0,_,_,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD mipurpose TO VERTEX Front_office_transaction VALUES(gsql_concat("MI",$0),_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD wirepurpose TO VERTEX Front_office_transaction VALUES(gsql_concat("WIRE",$0),_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD cashpurpose TO VERTEX Front_office_transaction VALUES(gsql_concat("CASH",$0),_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
