@@ -83,3 +83,6 @@ kddtomidata=\"/app/tigergraph/KDDmi.csv\",
 kddtowiredata=\"/app/tigergraph/KDDwire.csv\",
 kddtocashdata=\"/app/tigergraph/KDDcash.csv\",
 kddtotradedata=\"/app/tigergraph/KDDtrade.csv\""
+
+gsql -g RJF "run loading job load_job_kdd_case using 
+kddcasedata=\"/app/tigergraph/KDDcase.csv\""
