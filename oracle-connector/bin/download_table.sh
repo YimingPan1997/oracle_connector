@@ -52,3 +52,8 @@ python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/boPurpose.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/miPurpose.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/wirePurpose.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/cashPurpose.json
+
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDmi.json
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDwire.json
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDcash.json
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/KDDtrade.json
