@@ -71,3 +71,9 @@ kddreviewpartdata=\"/app/tigergraph/KDDreviewPart.csv\""
 
 gsql -g RJF "run loading job load_job_kdd_to_bo using 
 kddtobodata=\"/app/tigergraph/KDDTObo.csv\""
+
+gsql -g RJF "run loading job load_job_purpose using 
+bopurpose=\"/app/tigergraph/boPurpose.csv\",
+mipurpose=\"/app/tigergraph/miPurpose.csv\"
+wirepurpose=\"/app/tigergraph/wirePurpose.csv\"
+cashpurpose=\"/app/tigergraph/cashPurpose.csv\""
