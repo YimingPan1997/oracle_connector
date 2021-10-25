@@ -77,3 +77,9 @@ bopurpose=\"/app/tigergraph/boPurpose.csv\",
 mipurpose=\"/app/tigergraph/miPurpose.csv\"
 wirepurpose=\"/app/tigergraph/wirePurpose.csv\"
 cashpurpose=\"/app/tigergraph/cashPurpose.csv\""
+
+gsql -g RJF "run loading job load_job_kdd_to using 
+kddtomidata=\"/app/tigergraph/KDDmi.csv\",
+kddtowiredata=\"/app/tigergraph/KDDwire.csv\"
+kddtocashdata=\"/app/tigergraph/KDDcash.csv\"
+kddtotradedata=\"/app/tigergraph/KDDtrade.csv\""
