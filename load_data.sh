@@ -67,7 +67,7 @@ gsql -g RJF "run loading job load_job_mi3 using
 midata=\"/app/tigergraph/mi.csv\""
 
 gsql -g RJF "run loading job load_job_kdd_review_part using 
-kddreviewpartdata=\"/app/tigergraph/KDDreviewParty.csv\""
+kddreviewpartdata=\"/app/tigergraph/KDDreviewPart.csv\""
 
 gsql -g RJF "run loading job load_job_kdd_to_bo using 
 kddtobodata=\"/app/tigergraph/KDDTObo.csv\""
