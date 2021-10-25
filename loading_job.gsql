@@ -163,3 +163,10 @@ CREATE LOADING JOB load_job_kdd_case FOR GRAPH RJF {
       DEFINE FILENAME kddcasedata;
       LOAD kddcasedata TO EDGE Cases_Review VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
+    
+
+CREATE LOADING JOB load_job_accountRisk FOR GRAPH RJF {
+      DEFINE FILENAME accountriskdata;
+      LOAD accountriskdata TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      
+    }
