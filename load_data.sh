@@ -87,5 +87,5 @@ kddtotradedata=\"/app/tigergraph/KDDtrade.csv\""
 gsql -g RJF "run loading job load_job_kdd_case using 
 kddcasedata=\"/app/tigergraph/KDDcase.csv\""
 
-gsql -g RJF "run loading job load_job_account_risk using 
+gsql -g RJF "run loading job load_job_accountRisk using 
 accountriskdata=\"/app/tigergraph/accountRisk.csv\""
