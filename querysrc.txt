@@ -45,3 +45,6 @@ KDDtrade|select REVIEW_ID,TRADE_INTRL_ID FROM OFSAAFCCM.KDD_ALERT_MTCH_TRADE_VW
 KDDcase|select start_review_id,end_review_id FROM ofsaafccm.kdd_review_link
 
 accountRisk|select ACCT_INTRL_ID,ACCT_EFCTV_RISK_NB from ofsaafccm.acct
+
+caseStatus|SELECT case_review_id,status_cd FROM ofsaafccm.kdd_cases
+kddStatus|SELECT status_cd,status_nm FROM ofsaafccm.kdd_status 
