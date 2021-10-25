@@ -130,7 +130,7 @@ CREATE LOADING JOB load_job_mi FOR GRAPH RJF {
 
 CREATE LOADING JOB load_job_kdd_review_part FOR GRAPH RJF {
       DEFINE FILENAME kddreviewpartdata;
-      LOAD kddreviewpartdata TO VERTEX kdd_review VALUES($0,_,_$1,$2,$3,$4,$5,$6) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD kddreviewpartdata TO VERTEX kdd_review VALUES($0,_,_,$1,$2,$3,$4,$5,$6) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
 
 CREATE LOADING JOB load_job_kdd_to_bo FOR GRAPH RJF {
