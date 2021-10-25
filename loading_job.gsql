@@ -148,3 +148,14 @@ CREATE LOADING JOB load_job_purpose FOR GRAPH RJF {
       LOAD wirepurpose TO VERTEX Front_office_transaction VALUES(gsql_concat("WIRE",$0),_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD cashpurpose TO VERTEX Front_office_transaction VALUES(gsql_concat("CASH",$0),_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
+    
+    CREATE LOADING JOB load_job_kdd_to FOR GRAPH RJF {
+      DEFINE FILENAME kddtomidata;
+      DEFINE FILENAME kddtowiredata;
+      DEFINE FILENAME kddtocashdata;
+      DEFINE FILENAME kddtotradedata;
+      LOAD kddtomidata TO EDGE Break_FOT VALUES($0,gsql_concat("MI",$1)) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD kddtowiredata TO EDGE Break_FOT VALUES($0,gsql_concat("WIRE",$1)) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD kddtocashdata TO EDGE Break_FOT VALUES($0,gsql_concat("CASH",$1)) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD kddtotradedata TO EDGE Break_Trade VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
