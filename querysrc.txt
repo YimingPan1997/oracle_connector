@@ -35,3 +35,8 @@ boPurpose|select BO_TRXN_INTRL_ID,mantas_trxn_purp_cd FROM ofsaafccm.BACK_OFFICE
 miPurpose|select TRXN_INTRL_REF_ID,mantas_trxn_purp_cd FROM ofsaafccm.MI_TRXN
 wirePurpose|select TRXN_INTRL_REF_ID,mantas_trxn_purp_cd FROM ofsaafccm.WIRE_TRXN
 cashPurpose|select TRXN_INTRL_REF_ID,mantas_trxn_purp_cd FROM ofsaafccm.CASH_TRXN
+
+
+KDDmi|select REVIEW_ID,TRXN_INTRL_REF_ID FROM OFSAAFCCM.KDD_ALERT_MTCH_MI_TRXN_VW
+KDDwire|select REVIEW_ID,TRXN_INTRL_REF_ID FROM OFSAAFCCM.KDD_ALERT_MTCH_WIRE_TRXN_VW
+KDDcash|select REVIEW_ID,TRXN_INTRL_REF_ID FROM OFSAAFCCM.KDD_ALERT_MTCH_CASH_TRXN_VW
