@@ -30,3 +30,8 @@ KDDwire|SELECT DISTINCT KR.REVIEW_ID,KR.CREAT_TS,A.TRXN_INTRL_REF_ID,A.TRXN_BASE
 
 KDDreview|SELECT review_id,scnro_id,scnro_displ_nm,cntry_key_id,FOCAL_NTITY_DSPLY_NM,FOCAL_NTITY_DSPLY_id,hilgt_tx FROM OFSAAFCCM.KDD_REVIEW
 KDDTObo|SELECT review_id,trxn_intrl_ref_id FROM ofsaafccm.kdd_alert_mtch_bo_trxn_vw
+
+boPurpose|select BO_TRXN_INTRL_ID,mantas_trxn_purp_cd FROM ofsaafccm.BACK_OFFICE_TRXN
+miPurpose|select TRXN_INTRL_REF_ID,mantas_trxn_purp_cd FROM ofsaafccm.MI_TRXN
+wirePurpose|select TRXN_INTRL_REF_ID,mantas_trxn_purp_cd FROM ofsaafccm.WIRE_TRXN
+cashPurpose|select TRXN_INTRL_REF_ID,mantas_trxn_purp_cd FROM ofsaafccm.CASH_TRXN
