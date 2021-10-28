@@ -65,3 +65,4 @@ python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/accountRisk.jso
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/caseStatus.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/kddStatus.json
 
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/cases.json
