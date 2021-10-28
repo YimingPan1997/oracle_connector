@@ -98,4 +98,9 @@ gsql -g RJF "run loading job load_job_date using
 bot=\"/app/tigergraph/bot.csv\",
 midata=\"/app/tigergraph/mi.csv\""
 
-
+gsql -g RJF "run loading job load_job_tran using 
+bot=\"/app/tigergraph/bot.csv\",
+wiredata=\"/app/tigergraph/wire.csv\",
+cashdata=\"/app/tigergraph/cash.csv\",
+kddreviewpartdata=\"/app/tigergraph/KDDreviewPart.csv\",
+midata=\"/app/tigergraph/mi.csv\""
