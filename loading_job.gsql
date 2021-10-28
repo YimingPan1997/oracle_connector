@@ -175,7 +175,7 @@ CREATE LOADING JOB load_job_cases FOR GRAPH RJF {
       DEFINE FILENAME cases;
       DEFINE FILENAME casestatus;
       LOAD cases TO VERTEX Cases VALUES($0,$1,$2,$3,$4,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD casestatus to VERTEX cases_status VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD casestatus to VERTEX cases_statue VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
     
 CREATE LOADING JOB load_job_date FOR GRAPH RJF {
