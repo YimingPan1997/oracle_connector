@@ -89,3 +89,13 @@ kddcasedata=\"/app/tigergraph/KDDcase.csv\""
 
 gsql -g RJF "run loading job load_job_accountRisk using 
 accountriskdata=\"/app/tigergraph/accountRisk.csv\""
+
+gsql -g RJF "run loading job load_job_cases using 
+cases=\"/app/tigergraph/cases.csv\",
+casestatus=\"/app/tigergraph/caseStatus.csv\""
+
+gsql -g RJF "run loading job load_job_date using 
+bot=\"/app/tigergraph/bot.csv\",
+midata=\"/app/tigergraph/mi.csv\""
+
+
