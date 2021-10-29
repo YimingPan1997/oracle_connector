@@ -101,5 +101,5 @@ midata=\"/app/tigergraph/mi.csv\""
 
 gsql -g RJF "run loading job load_job_tran using 
 bot=\"/app/tigergraph/arisk.csv\",
-ccountdata=\"/app/tigergraph/account.csv\",
+accountdata=\"/app/tigergraph/account.csv\",
 accountbalancedata=\"/app/tigergraph/accountbalance.csv\""
