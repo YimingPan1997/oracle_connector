@@ -1,0 +1,11 @@
+CREATE DISTRIBUTED QUERY test(/* Parameters here */) FOR GRAPH RJF { 
+  /* Write query logic here */ 
+  Start = {Back_Office_Transaction.*};
+  Start = SELECT s FROM Start:s WHERE s.Transaction_Reference_Identifier=="null";
+  PRINT Start;
+  #Start = SELECT s FROM Start:s-(Cancel_pair_transaction:e)-:t ACCUM DELETE(e);
+  PRINT Start;
+  PRINT upper("sD asdasd") like "%SD%";
+  
+  PRINT "test works!"; 
+}

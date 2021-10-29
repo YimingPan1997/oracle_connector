@@ -1,0 +1,10 @@
+CREATE DISTRIBUTED QUERY Sample3(VERTEX input/* Parameters here */) FOR GRAPH RJF { 
+  /* show me the sende and reciver in a given transaction */ 
+  SetAccum<EDGE> @@playedge;
+  start = {input};
+  off = SELECT s FROM start:t-((Offset_Account|Account_to_FOT_2):e)-Account:s ACCUM @@playedge+=e;
+  sen = SELECT s FROM start:t-((Account_to_BOT|Account_to_FOT_1):e)-Account:s ACCUM @@playedge+=e;
+  
+  print start,off,sen,@@playedge;
+  PRINT "Sample3 works!"; 
+}

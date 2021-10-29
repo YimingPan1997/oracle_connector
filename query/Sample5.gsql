@@ -1,0 +1,14 @@
+CREATE DISTRIBUTED QUERY Sample5(STRING scnro/* Parameters here */) FOR GRAPH RJF { 
+  /* Write query logic here */ 
+  SetAccum<VERTEX> @cases;
+  Start = {kdd_review.*};
+  Start = SELECT s FROM Start:s-(Cases_Review)-Cases:c 
+                    WHERE s.Scnro_id==scnro
+                    ACCUM s.@cases+=c;
+  res = SELECT t FROM Start:s-(Break_BOT)-:t
+                  WHERE to_datetime(t.Execution_date)>=to_datetime("2021-01-01") and t.Purpose=="GENERAL" 
+                  ACCUM t.@cases+=s.@cases LIMIT 10;
+  
+  print res [res.@cases];
+  PRINT "Sample5 works!"; 
+}

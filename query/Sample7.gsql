@@ -1,0 +1,7 @@
+CREATE DISTRIBUTED QUERY Sample7(INT risk/* Parameters here */) FOR GRAPH RJF { 
+  /*whoe me accounts with a effective risk */ 
+  Start = {Account.*};
+  res = SELECT s FROM Start:s WHERE str_to_int(s.Risk)>risk  LIMIT 10;
+  PRINT res;
+  PRINT "Sample7 works!"; 
+}

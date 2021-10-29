@@ -1,0 +1,15 @@
+CREATE DISTRIBUTED QUERY Sample2(VERTEX<Account> input/* Parameters here */) FOR GRAPH RJF { 
+  /* all transactions*/ 
+  SumAccum<INT> @count;
+  Start = {input};
+  res1 = SELECT c FROM Start:s-(Account_to_BOT|Offset_Account)-:c
+                 WHERE  to_datetime(c.Execution_date)>=to_datetime("2020-10-01")
+                 ACCUM s.@count+=1;
+  
+  res2 = SELECT c FROM Start:s-(Account_to_FOT_1|Account_to_FOT_2)-Front_office_transaction:c
+                 WHERE  ((c.Tran_type=="WIRE" AND to_datetime(c.Execution_date)>=to_datetime("2020-10-01")) OR (c.Tran_type=="MI" AND to_datetime(c.Posting_date)>=to_datetime("2020-10-01")) OR (c.Tran_type=="CASH" AND to_datetime(c.Execution_date)>=to_datetime("2020-10-01")))
+                 ACCUM s.@count+=1;
+  res = res1 union res2;
+  PRINT res1,res2,res.size(),Start;
+  PRINT "Sample2 works!"; 
+}

@@ -1,0 +1,43 @@
+CREATE DISTRIBUTED QUERY Statistic(/* Parameters here */) FOR GRAPH RJF { 
+  /* Write query logic here */ 
+  OrAccum @select;
+  SumAccum<INT> @@trade,@@bot,@@fot,@@MI,@@CASH,@@WIRE;
+  ca = {Cases.*};
+  ca = SELECT s FROM ca:s-(Cases_Review)-kdd_review:t
+                WHERE upper(s.Status_nm) like "%RFI%" or upper(s.Status_nm) like "%ESCALATE%"
+                ACCUM t.@select+=TRUE;
+  alert = {kdd_review.*};
+  alert = SELECT s FROM alert:s  ACCUM @@trade+=s.outdegree("Break_Trade"),@@bot+=s.outdegree("Break_BOT"),@@fot+=s.outdegree("Break_FOT");
+  PRINT @@trade,@@bot,@@fot;
+  alert = SELECT s FROM alert:s-(Break_FOT)-:t 
+                   ACCUM IF t.Tran_type=="MI" THEN @@MI+=1 END,
+  IF t.Tran_type=="CASH" THEN @@CASH+=1 END,
+  IF t.Tran_type=="WIRE" THEN @@WIRE+=1 END;
+  PRINT @@MI,@@CASH,@@WIRE;
+  print alert.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-1-1") AND to_datetime("2020-2-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-2-1") AND to_datetime("2020-3-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-3-1") AND to_datetime("2020-4-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-4-1") AND to_datetime("2020-5-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-5-1") AND to_datetime("2020-6-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-6-1") AND to_datetime("2020-7-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-7-1") AND to_datetime("2020-8-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-8-1") AND to_datetime("2020-9-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-9-1") AND to_datetime("2020-10-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-10-1") AND to_datetime("2020-11-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-11-1") AND to_datetime("2021-1-1");
+  PRINT alert1.size();
+  alert1 = SELECT s FROM alert:s WHERE to_datetime(s.Create_date) BETWEEN to_datetime("2020-12-1") AND to_datetime("2020-7-1");
+  PRINT alert1.size();
+  PRINT "Statistic works!"; 
+}

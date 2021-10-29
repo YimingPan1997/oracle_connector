@@ -1,0 +1,10 @@
+CREATE DISTRIBUTED QUERY Sample4(STRING input/* Parameters here */) FOR GRAPH RJF { 
+  /* who the back office transaction that were positive to scenario 6 */ 
+  SumAccum<INT> @count;
+  Start = {kdd_review.*};
+  res = SELECT t FROM Start:s-(Break_BOT)-:t 
+                 WHERE s.Scnro_id==input and to_datetime(t.Execution_date)>=to_datetime("2021-01-01");
+
+  PRINT  res.size();
+  PRINT "Sample4 works!"; 
+}

@@ -1,0 +1,28 @@
+CREATE DISTRIBUTED QUERY Statistic1(/* Parameters here */) FOR GRAPH RJF { 
+  /* Write query logic here */ 
+  Start = {Back_Office_Transaction.*};
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-1-1") AND to_datetime("2020-2-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-2-1") AND to_datetime("2020-3-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-3-1") AND to_datetime("2020-4-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-4-1") AND to_datetime("2020-5-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-5-1") AND to_datetime("2020-6-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-6-1") AND to_datetime("2020-7-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-7-1") AND to_datetime("2020-8-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-8-1") AND to_datetime("2020-9-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-9-1") AND to_datetime("2020-10-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-10-1") AND to_datetime("2020-11-1");
+  PRINT bot.size();
+  bot = SELECT s FROM Start:s WHERE to_datetime(s.Execution_date) BETWEEN  to_datetime("2020-11-1") AND to_datetime("2020-12-1");
+  PRINT bot.size();
+ 
+  PRINT "Statistic1 works!"; 
+}

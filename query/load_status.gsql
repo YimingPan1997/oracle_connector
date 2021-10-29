@@ -1,0 +1,9 @@
+CREATE DISTRIBUTED QUERY load_status(/* Parameters here */) FOR GRAPH RJF { 
+  /* Write query logic here */ 
+  MapAccum<STRING,STRING> @@map;
+  sta = {cases_statue.*};
+  sta = SELECT s FROM sta:s ACCUM @@map+=(s.cd->s.name);
+  Start = {Cases.*};
+  Start = SELECT s FROM Start:s Post-ACCUM s.Status_nm=@@map.get(s.Status_cd);
+  PRINT "load_status works!"; 
+}

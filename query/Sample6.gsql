@@ -1,0 +1,10 @@
+CREATE DISTRIBUTED QUERY Sample6(STRING purpose/* Parameters here */) FOR GRAPH RJF { 
+  /* show me all transaction of a certain purpose */
+  bot = {Back_Office_Transaction.*};
+  fot = {Front_office_transaction.*};
+  b1 = SELECT s FROM bot:s WHERE s.Purpose==purpose LIMIT 5;
+  f1 = SELECT s FROM fot:s WHERE s.Purpose==purpose LIMIT 5;
+  bo = b1 union f1;
+  print bo;
+  PRINT "Sample6 works!"; 
+}

@@ -1,0 +1,13 @@
+CREATE DISTRIBUTED QUERY Sample1(VERTEX<Customer> input/* Parameters here */) FOR GRAPH RJF { 
+  /* show me all accounts associated to a party id */ 
+  SetAccum<VERTEX> @account;
+  SumAccum<INT> @count;
+  Start = {input};
+  Start = SELECT s FROM Start:s-(Account_to_Customer)-Account:c
+                   ACCUM s.@account+=c,s.@count+=1
+                   LIMIT 10;
+  Res = SELECT c FROM Start:s-(Account_to_Customer)-Account:c;
+  PRINT Start;
+  PRINT Res;
+  PRINT "Sample1 works!"; 
+}
