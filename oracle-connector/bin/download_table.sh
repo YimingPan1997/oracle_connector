@@ -66,3 +66,7 @@ python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/caseStatus.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/kddStatus.json
 
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/cases.json
+
+
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/email.json
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/phone.json
