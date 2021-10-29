@@ -3,7 +3,7 @@ CREATE LOADING JOB load_job_account1 FOR GRAPH RJF {
       DEFINE FILENAME accountdata;
       DEFINE FILENAME accountbalancedata;
       LOAD accountdata TO VERTEX Account VALUES($0, $1, $2, $3, $4, $5, $6, $7,_,$12,$13,$14) USING SEPARATOR=",", HEADER="false", EOL="\n";
-      LOAD accountbalancedata TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,$1,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD accountbalancedata TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,$1,_,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD accountdata TO EDGE Account_to_Product VALUES($0, $8) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD accountdata TO EDGE Alternate_account VALUES($0, $9) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD accountdata TO EDGE account_to_household VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
