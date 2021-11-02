@@ -9,6 +9,11 @@ CREATE LOADING JOB load_job_account1 FOR GRAPH RJF {
       LOAD accountdata TO EDGE account_to_household VALUES($0, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD accountdata TO EDGE Primary_customer VALUES($0, $11) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
+CREATE LOADING JOB load_job_group FOR GRAPH RJF {
+      DEFINE FILENAME g;
+      LOAD g TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      
+    }
 
 CREATE LOADING JOB load_job_account_address FOR GRAPH RJF {
       DEFINE FILENAME accountaddressdata;
