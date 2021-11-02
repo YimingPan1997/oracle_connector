@@ -1,0 +1,51 @@
+CREATE DISTRIBUTED QUERY Aggregate_write(INT batch_number,STRING file_path/* Parameters here */) FOR GRAPH RJF {
+  /* Write query logic here */
+  SetAccum<VERTEX<Account>> @AggregateValue;
+  MinAccum<VERTEX<Account>> @min;
+  MaxAccum<VERTEX<Account>> @max;
+  MaxAccum<FLOAT> @timeDecay;
+  SetAccum<VERTEX<Account>> @acc;
+  FILE f (file_path);
+  PRINT now();
+  All = {Account.*};
+  
+  FOREACH i in RANGE[0,batch_number-1] DO
+          current = SELECT s FROM All:s
+                    WHERE getvid(s)%batch_number == i;
+          #Customer
+          temp = SELECT s FROM current:s-(Account_to_Customer)-Customer:c 
+                          ACCUM FOREACH nei in c.neighbors("Account_to_Customer") DO
+                                        IF getvid(nei)<getvid(s) THEN s.@AggregateValue+=nei END
+                                END;
+          #household group 
+          temp = SELECT s FROM current:s-(account_to_household)-Household_group:h 
+                          ACCUM FOREACH nei in h.neighbors("account_to_household") DO
+                                        IF getvid(nei)<getvid(s) THEN s.@AggregateValue+=nei END
+                                END;
+          Cus = SELECT s FROM current-(Account_to_Customer)-Customer:s;
+          
+          email = SELECT e FROM Cus:s-(Customer_Email)-Email:e;
+          email = SELECT e FROM email:e-(Customer_Email)-Customer:c 
+                           ACCUM e.@acc+=c.neighbors("Account_to_Customer");
+          Cus = SELECT s FROM Cus:s-(Customer_Email)-Email:e ACCUM s.@acc+=e.@acc;
+          temp = SELECT s FROM current:s-(Account_to_Customer)-Customer:c ACCUM s.@AggregateValue+=c.@acc;
+          
+          phone = SELECT e FROM Cus:s-(Customer_Phone)-Phone:e;
+          phone = SELECT e FROM phone:e-(Customer_Phone)-Customer:c 
+                           ACCUM e.@acc+=c.neighbors("Account_to_Customer");
+          Cus = SELECT s FROM Cus:s-(Customer_Phone)-Phone:e ACCUM s.@acc+=e.@acc;
+          temp = SELECT s FROM current:s-(Account_to_Customer)-Customer:c ACCUM s.@AggregateValue+=c.@acc;
+          
+          Cus = SELECT s FROM Cus:s-(Customer_Email)-Email:e POST-ACCUM s.@acc.clear(),e.@acc.clear();
+          Cus = SELECT s FROM Cus:s-(Customer_Phone)-Phone:e POST-ACCUM s.@acc.clear(),e.@acc.clear();
+          
+          
+          current = SELECT s FROM current:s
+                    ACCUM FOREACH nei in s.@AggregateValue DO
+                                  f.println(s.Identifier,nei.Identifier)
+                          END
+                    POST-ACCUM s.@AggregateValue.clear();
+  END;
+  PRINT now();
+  PRINT "Aggregate_Global works!";
+}
