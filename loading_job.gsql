@@ -15,6 +15,11 @@ CREATE LOADING JOB load_job_account_address FOR GRAPH RJF {
       LOAD accountaddressdata TO VERTEX Address VALUES($0, $1, $2, $3, $4, $5, $6, $7, $8, $9, $10) USING SEPARATOR=",", HEADER="false", EOL="\n";
        LOAD accountaddressdata TO EDGE Account_has_Address VALUES($11,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
+    
+CREATE LOADING JOB load_job_add FOR GRAPH RJF {
+      DEFINE FILENAME accountaddressdata;
+       LOAD accountaddressdata TO EDGE Account_has_Address VALUES($11,gsql_concat($3,"#",$4,"#",$7,"#",$8,"#",$9)) USING SEPARATOR=",", HEADER="false", EOL="\n";
+    }
 
 CREATE LOADING JOB load_job_customer_address FOR GRAPH RJF {
       DEFINE FILENAME customeraddressdata;
