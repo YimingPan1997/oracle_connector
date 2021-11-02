@@ -2,6 +2,9 @@ gsql -g RJF "run loading job load_job_account1 using
 accountdata=\"/app/tigergraph/account.csv\",
 accountbalancedata=\"/app/tigergraph/accountbalance.csv\""
 
+gsql -g RJF "run loading job load_job_group using 
+g=\"/app/tigergraph/group.csv\""
+
 gsql -g RJF "run loading job load_job_account_address using 
 accountaddressdata=\"/app/tigergraph/accountaddress.csv\""
 
