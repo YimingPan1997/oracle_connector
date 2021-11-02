@@ -222,5 +222,5 @@ CREATE LOADING JOB load_job_ep FOR GRAPH RJF {
       }
 CREATE LOADING JOB load_job_relationship FOR GRAPH RJF {
       DEFINE FILENAME rel;
-      LOAD rel TO EDGE relationship VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD rel TO EDGE relationship VALUES($0,$1,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
