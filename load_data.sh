@@ -110,3 +110,7 @@ accountbalancedata=\"/app/tigergraph/accountbalance.csv\""
 gsql -g RJF "run loading job load_job_ep using 
 phone=\"/app/tigergraph/phone.csv\",
 email=\"/app/tigergraph/email.csv\""
+
+
+gsql -g RJF "run loading job load_job_relationship using 
+rel=\"/app/tigergraph/rel.csv\""
