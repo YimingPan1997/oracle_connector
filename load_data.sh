@@ -5,7 +5,7 @@ accountbalancedata=\"/app/tigergraph/accountbalance.csv\""
 gsql -g RJF "run loading job load_job_group using 
 g=\"/app/tigergraph/group.csv\""
 
-gsql -g RJF "run loading job load_job_result using 
+gsql -g result "run loading job load_job_result using 
 res=\"/app/tigergraph/result_Oct_2020_new.csv\""
 
 gsql -g RJF "run loading job load_job_account_address using 
