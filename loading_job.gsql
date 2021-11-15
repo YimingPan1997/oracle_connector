@@ -17,7 +17,7 @@ CREATE LOADING JOB load_job_group FOR GRAPH RJF {
     
 CREATE LOADING JOB load_job_TG FOR GRAPH RJF {
       DEFINE FILENAME g;
-      LOAD g TO VEDGE TG_edge VALUES($1,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD g TO EDGE TG_edge VALUES($1,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
       
     }
 CREATE LOADING JOB load_job_result FOR GRAPH result {
