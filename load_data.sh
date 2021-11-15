@@ -130,4 +130,4 @@ email=\"/app/tigergraph/email.csv\""
 gsql -g RJF "run loading job load_job_relationship using 
 rel=\"/app/tigergraph/rel.csv\""
 
-gsql -g RJF "run loading job load_job_relationship"
+gsql -g RJF "run loading job load_job_relationship1"
