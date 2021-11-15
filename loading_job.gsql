@@ -14,6 +14,12 @@ CREATE LOADING JOB load_job_group FOR GRAPH RJF {
       LOAD g TO VERTEX Account VALUES($0,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
       
     }
+    
+CREATE LOADING JOB load_job_TG FOR GRAPH RJF {
+      DEFINE FILENAME g;
+      LOAD g TO VEDGE TG_edge VALUES($1,$0) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      
+    }
 CREATE LOADING JOB load_job_result FOR GRAPH result {
       DEFINE FILENAME res;
       LOAD res TO VERTEX result_v VALUES(gsql_concat($0,"-",$1,"-",$2,$3),gsql_concat($0,"-",$1,"-",$2),$4,gsql_concat($5,$6),$7) USING SEPARATOR=",", HEADER="false", EOL="\n";
