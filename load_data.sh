@@ -14,6 +14,12 @@ g=\"/app/tigergraph/new_new_wcc.csv\""
 gsql -g RJF "run loading job load_job_TG using 
 g=\"/app/tigergraph/new_new_wcc.csv\""
 
+gsql -g RJF "run loading job load_job_group using 
+g=\"/app/tigergraph/new_new_new_wcc.csv\""
+
+gsql -g RJF "run loading job load_job_TG using 
+g=\"/app/tigergraph/new_new_new_wcc.csv\""
+
 gsql -g result "run loading job load_job_result using 
 res=\"/app/tigergraph/result_Oct_2020_new.csv\""
 
