@@ -240,12 +240,12 @@ CREATE LOADING JOB load_job_relationship FOR GRAPH RJF {
       DEFINE FILENAME rel;
       LOAD rel TO EDGE relationship VALUES($0,$1,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
     }
-CREATE LOADING JOB load_job_relationship1 FOR GRAPH RJF {
-      DEFINE FILENAME alt="/app/tigergraph/rel_alt1.csv";
-      DEFINE FILENAME cus="/app/tigergraph/rel_cus1.csv";
-      DEFINE FILENAME phone="/app/tigergraph/rel_email1.csv";
-      DEFINE FILENAME email="/app/tigergraph/rel_phone1.csv";
-      DEFINE FILENAME address="/app/tigergraph/rel_address1.csv";
+CREATE LOADING JOB load_job_relationship FOR GRAPH RJF {
+      DEFINE FILENAME alt="/app/tigergraph/rel_alt.csv";
+      DEFINE FILENAME cus="/app/tigergraph/rel_cus.csv";
+      DEFINE FILENAME phone="/app/tigergraph/rel_email.csv";
+      DEFINE FILENAME email="/app/tigergraph/rel_phone.csv";
+      DEFINE FILENAME address="/app/tigergraph/rel_address.csv";
       LOAD alt TO EDGE relationship VALUES($0,$1,_,"TRUE",_,_,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD cus TO EDGE relationship VALUES($0,$1,_,_,"TRUE",_,_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
       LOAD phone TO EDGE relationship VALUES($0,$1,_,_,_,"TRUE",_,_) USING SEPARATOR=",", HEADER="false", EOL="\n";
