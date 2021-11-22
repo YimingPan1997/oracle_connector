@@ -267,6 +267,6 @@ CREATE LOADING JOB load_job_relationship FOR GRAPH RJF {
     }
     CREATE LOADING JOB load_job_customer_party FOR GRAPH RJF {
       DEFINE FILENAME g;
-      LOAD g TO EDGE Transaction_to_part VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      LOAD g TO EDGE Transaction_to_part VALUES(gsql_concat("WIRE",$0),$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
       
     }
