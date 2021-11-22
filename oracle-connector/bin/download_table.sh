@@ -72,3 +72,4 @@ python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/email.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/arisk.json
 python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/account.json
 
+python3 datax.py /app/tigergraph/jdbc_connector/jdbc_query_files/wirethird.json
