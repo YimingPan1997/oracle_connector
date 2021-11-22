@@ -265,3 +265,8 @@ CREATE LOADING JOB load_job_relationship FOR GRAPH RJF {
       LOAD customerdata TO VERTEX Customer VALUES($0,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,_,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
       
     }
+    CREATE LOADING JOB load_job_customer_party FOR GRAPH RJF {
+      DEFINE FILENAME g;
+      LOAD g TO EDGE Transaction_to_part VALUES($0,$1) USING SEPARATOR=",", HEADER="false", EOL="\n";
+      
+    }
