@@ -143,3 +143,6 @@ g=\"/app/tigergraph/customer_edge.csv\""
 
 gsql -g RJF "run loading job load_job_customer_industry using 
 customerdata=\"/app/tigergraph/industry.csv\""
+
+gsql -g RJF "run loading job load_job_party using 
+g=\"/app/tigergraph/wirethird.csv\""
