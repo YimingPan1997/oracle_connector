@@ -149,3 +149,7 @@ g=\"/app/tigergraph/wirethird.csv\""
 
 gsql -g RJF "run loading job load_job_countryRisk using 
 g=\"/app/tigergraph/countryRisk.csv\""
+
+
+gsql -g RJF "run loading job load_job_casesdate using 
+g=\"/app/tigergraph/cases.csv\""
